@@ -1,0 +1,28 @@
+﻿@model Domain1.Entities.Book
+
+<div class="form-group list-group-item-primary">
+    <div class="row">
+        <div class="col-xl-10">
+            <h3>
+                <strong>@Model.Name</strong>
+            </h3>
+            <h4><strong>@Model.Author</strong></h4>
+        </div>
+        <div class="col-xl-2">
+            <h3>
+                <strong class="pull-right badge-primary">
+                    @Model.Price.ToString("# grn")
+                </strong>
+            </h3>
+            @using (Html.BeginForm("AddToCart","Cart"))
+            {
+                <div class="pull-right">
+                    @Html.HiddenFor(p=>p.BookId)
+                    @Html.Hidden("returnUrl",Request.Url.PathAndQuery)
+                    <input type="submit" class="btn btn-success" value="Add to box"/> 
+                </div>
+            }
+        </div>
+    </div>
+    <span class="lead">@Model.Description</span>
+</div>
